@@ -829,7 +829,7 @@ output$Metabolic_functions_Table <- renderDT({
   metabolism_data <- get_metabolism_data()
   if (is.null(metabolism_data)) return(NULL)
   
-  selected_columns <- c("MIRNA", "gene", "Reaction", "Formula", "Gruppi", "group", "essentiality")
+  selected_columns <- c("MIRNA", "gene", "Reaction", "Formula", "Groups", "group", "essentiality")
   
   # Se il checkbox è selezionato, aggiungi la colonna GPR
   if (input$show_GPR) {
@@ -838,13 +838,13 @@ output$Metabolic_functions_Table <- renderDT({
   
   # Raggruppamento per variabili tranne MIRNA, e concatenamento dei miRNA separati da virgola
   metabolism_data <- metabolism_data %>%
-    group_by(Reaction, Formula, Gruppi, group, essentiality) %>%
+    group_by(Reaction, Formula, Groups, group, essentiality) %>%
     mutate(MIRNA = paste(unique(MIRNA), collapse = ", ")) %>%
     ungroup()
   
   # Rimuovere righe duplicate
   metabolism_data <- metabolism_data %>%
-    distinct(Reaction, Formula, Gruppi, group, essentiality, MIRNA, .keep_all = TRUE)
+    distinct(Reaction, Formula, Groups, group, essentiality, MIRNA, .keep_all = TRUE)
   
   datatable(metabolism_data[, selected_columns, drop = FALSE], 
             options = list(paging = TRUE, searching = TRUE))

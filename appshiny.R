@@ -1,3 +1,5 @@
+install.packages(c("shiny", "DT", "dplyr", "readxl", "igraph", "ggplot2", "visNetwork", "pheatmap", "plotly"))
+
 library(shiny)
 library(DT) 
 library(dplyr)
@@ -8,11 +10,11 @@ library(visNetwork)
 library(pheatmap)
 library(plotly)
 
-merge_ <- read_excel("data/dataset_shinyapp.xlsx")
+merge_ <- read_excel("data/Dataset_miRExplorer.xlsx")
 sorted_Diseases_merge_ <- sort(unique(merge_$disease))
 sorted_miRNA_merge_ <- sort(unique(merge_$miRNA))
 
-DEMC_ <- read_excel("data/DEMC_.xlsx", sheet = "DA IMPORTARE")
+DEMC_ <- read_excel("data/dbDEMC.xlsx")
 
 sorted_Diseases_DEMC_ <- sort(unique(DEMC_$disease))
 sorted_miRNA_DEMC_ <- sort(unique(DEMC_$miRNA))
@@ -26,7 +28,7 @@ mirtarbase <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "disease-miRNA
 universe <- unique(mirtarbase$Target.Gene)
 
 #ontology ed enrichment
-ontology <- read_excel("data/reactome_ontology.xlsx", sheet = "splittati")
+ontology <- read_excel("data/reactome_ontology.xlsx")
 ontology <- ontology[, c("genes", "name")]  
 ontology <- na.omit(ontology)
 
@@ -34,9 +36,9 @@ ontology2 <- merge(ontology, mirtarbase[,c("Target.Gene","miRNA")], by.x = "gene
 ontology2=ontology2[,c("name","genes","miRNA")]
 
 
-tabella_3p <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "tabella_3p")
-tabella_5p <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "tabella_5p")
-tabella_altro <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "tabella_altro")
+tabella_3p <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "tab_3p")
+tabella_5p <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "tab_5p")
+tabella_altro <- read_excel("data/disease-miRNA_MERGE.xlsx", sheet = "tab_other")
 
 tab_metabolism <- read_excel("data/tab_metabolism.xlsx")
 
