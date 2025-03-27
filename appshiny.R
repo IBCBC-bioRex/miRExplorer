@@ -1,4 +1,4 @@
-install.packages(c("shiny", "DT", "dplyr", "readxl", "igraph", "ggplot2", "visNetwork", "pheatmap", "plotly"))
+#install.packages(c("shiny", "DT", "dplyr", "readxl", "igraph", "ggplot2", "visNetwork", "pheatmap", "plotly"))
 
 library(shiny)
 library(DT) 

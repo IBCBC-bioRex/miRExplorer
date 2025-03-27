@@ -2,7 +2,7 @@ ui <- fluidPage(
   
   tags$style(background),
   
-  titlePanel(HTML("<strong><em>ShinyMir</em></strong>")),
+  titlePanel(HTML("<strong><em>miRExplorer</em></strong>")),
   
   sidebarLayout(
     sidebarPanel(
