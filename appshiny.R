@@ -1,14 +1,10 @@
-install.packages("remotes")
+packages <- c("shiny", "DT", "dplyr", "readxl", "igraph", "ggplot2", "visNetwork", "pheatmap", "plotly")
 
-remotes::install_version("shiny", version = "1.10.0", repos = "http://cran.us.r-project.org")
-remotes::install_version("DT", version = "0.33", repos = "http://cran.us.r-project.org")
-remotes::install_version("dplyr", version = "1.1.4", repos = "http://cran.us.r-project.org")
-remotes::install_version("readxl", version = "1.4.3", repos = "http://cran.us.r-project.org")
-remotes::install_version("igraph", version = "2.1.4", repos = "http://cran.us.r-project.org")
-remotes::install_version("ggplot2", version = "3.5.1", repos = "http://cran.us.r-project.org")
-remotes::install_version("visNetwork", version = "2.1.2", repos = "http://cran.us.r-project.org")
-remotes::install_version("pheatmap", version = "1.0.12", repos = "http://cran.us.r-project.org")
-remotes::install_version("plotly", version = "4.10.4", repos = "http://cran.us.r-project.org")
+for (pkg in packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg, dependencies = TRUE)
+  }
+}
 
 library(shiny)
 library(DT) 
